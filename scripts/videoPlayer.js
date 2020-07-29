@@ -87,14 +87,14 @@ export const videoPlayerInit = () => {
         }
     };
 
-    videoProgress.addEventListener('change', () => {
-        videoPlayer.removeEventListener("timeupdate", timeUpdate);
+    videoProgress.addEventListener('input', () => {
+        //  videoPlayer.removeEventListener("timeupdate", timeUpdate);
         console.log('change')
         try {
             const duration = videoPlayer.duration;
             const value = videoProgress.value;
             videoPlayer.currentTime = (value * duration) / 100;
-            videoPlayer.addEventListener("timeupdate", timeUpdate)
+            //   videoPlayer.addEventListener("timeupdate", timeUpdate)
         } catch (err) {
             console.log(err.message)
         }
