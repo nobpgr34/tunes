@@ -1,3 +1,4 @@
+import { list } from "./index.js"
 export const radioPlayerInit = () => {
     console.log("radio init");
     const radio = document.querySelector('.radio');
@@ -10,6 +11,7 @@ export const radioPlayerInit = () => {
 
 
     const audio = new Audio();
+    list.push(audio);
     audio.type = 'audio/aac';
 
     radioStop.disabled = true;
@@ -28,7 +30,22 @@ export const radioPlayerInit = () => {
     //     }
     //     toggleIcon();
     // })
+    const toggleIcon = () => {
 
+        if (audio.paused) {
+            radio.classList.remove("play")
+            radioStop.classList.remove("fa-pause")
+            radioStop.classList.add("fa-play")
+
+        } else {
+            radio.classList.add("play")
+            radioStop.classList.remove("fa-play")
+            radioStop.classList.add("fa-pause")
+
+        }
+    }
+    audio.addEventListener("pause", toggleIcon)
+    audio.addEventListener("play", toggleIcon)
     const selectltem = elem => {
         radioitem.forEach(item => item.classList.remove('select'));
         elem.classList.add('select');
@@ -73,19 +90,6 @@ export const radioPlayerInit = () => {
         toggleIcon();
     })
 
-    const toggleIcon = () => {
 
-        if (audio.paused) {
-            radio.classList.remove("play")
-            radioStop.classList.remove("fa-pause")
-            radioStop.classList.add("fa-play")
-
-        } else {
-            radio.classList.add("play")
-            radioStop.classList.remove("fa-play")
-            radioStop.classList.add("fa-pause")
-
-        }
-    }
 
 }

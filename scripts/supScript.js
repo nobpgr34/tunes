@@ -1,0 +1,1 @@
+export const AddZero = n => n < 10 ? '0' + n : n;
